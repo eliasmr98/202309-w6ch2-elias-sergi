@@ -11,4 +11,21 @@ export class ApiRepo {
       throw new Error(response.status + ' ' + response.statusText);
     return response.json();
   }
+
+  async updateCharacter(
+    id: AnyCharacter['id'],
+    updatedNote: Partial<AnyCharacter>
+  ): Promise<AnyCharacter> {
+    const finalUrl = `${this.apiUrl}/${id}`;
+    const response = await fetch(finalUrl, {
+      method: 'PATCH',
+      body: JSON.stringify(updatedNote),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+    if (!response.ok)
+      throw new Error(response.status + ' ' + response.statusText);
+    return response.json();
+  }
 }

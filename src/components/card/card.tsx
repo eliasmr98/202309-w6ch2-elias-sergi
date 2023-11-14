@@ -1,55 +1,61 @@
-import {
-  Category,
-  Fighter,
-  King,
-  Squire,
-  Adviser,
-} from '../../models/character';
+import { Category } from '../../models/character';
 import '../../main.scss';
 import { AnyCharacter } from '../../models/character';
-
-function makeExtraData(item: AnyCharacter) {
-  if ('reignYears' in item) {
-    return <li>Años de reinado: {item.reignYears}</li>;
-  } else if ('weapon' in item) {
-    return <li>Arma: {item.weapon}</li>;
-    // } else if ('skillLevel' in item) {
-    //   return <li>Destreza: {item.skillLevel}</li>
-  } else if ('adviseTo' in item) {
-    return <li>Sirve a: {item.adviseTo.name}</li>;
-    // } else if  ('servilityGrade' in item) {
-    //   return <li>Peloteo: {item.servilityGrade}</li>
-  } else if ('servesTo' in item) {
-    return <li>Asesora a: {item.servesTo.name}</li>;
-  }
-}
-
-function makEmoji(category: Category) {
-  switch (category) {
-    case 'King':
-      return '👑';
-    case 'Fighter':
-      return '🗡';
-    case 'Adviser':
-      return '🎓';
-    default:
-      return '🛡';
-  }
-}
+import { useCharacters } from '../../hooks/useCharacters';
 
 type Props = {
   character: AnyCharacter;
 };
 
 export function Card({ character }: Props) {
+  console.log('Category:', character.category);
+  console.log('ID:', character.id);
+  console.log('isAlive', character.isAlive);
+
+  const { updateCharacter } = useCharacters();
+
+  function handleDead(id: number) {
+    updateCharacter(id, { isAlive: false });
+  }
+
+  function makEmoji(category: Category) {
+    switch (category) {
+      case 'king':
+        return '👑';
+      case 'fighter':
+        return '🗡';
+      case 'adviser':
+        return '🎓';
+      default:
+        return '🛡';
+    }
+  }
+
+  function makeExtraData(item: AnyCharacter) {
+    if ('reignYears' in item) {
+      return <li>Años de reinado: {item.reignYears}</li>;
+    } else if ('weapon' in item) {
+      return <li>Arma: {item.weapon}</li>;
+      // } else if ('skillLevel' in item) {
+      //   return <li>Destreza: {item.skillLevel}</li>
+    } else if ('adviseTo' in item) {
+      return <li>Sirve a: {item.adviseTo.name}</li>;
+      // } else if  ('servilityGrade' in item) {
+      //   return <li>Peloteo: {item.servilityGrade}</li>
+    } else if ('servesTo' in item) {
+      return <li>Asesora a: {item.servesTo.name}</li>;
+    }
+  }
+
   return (
     <li className="character col">
       <div className="card character__card">
         <img
           src={`${character.name.toLowerCase()}.jpg`}
           alt={`${character.name} ${character.family}`}
-          className="character__picture 
-      {!character.isAlive && 'card-img-top'}"
+          className={`character__picture ${
+            !character.isAlive && 'card-img-top'
+          }`}
         />
         <div className="card-body">
           <h2 className="character__name card-title h4">
@@ -72,7 +78,12 @@ export function Card({ character }: Props) {
             <ul className="list-unstyled">{makeExtraData(character)}</ul>
             <div className="character__actions">
               <button className="character__action btn talk">habla</button>
-              <button className="character__action btn dead">muere</button>
+              <button
+                className="character__action btn dead"
+                onClick={() => handleDead(character.id)}
+              >
+                muere
+              </button>
             </div>
           </div>
         </div>

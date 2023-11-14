@@ -1,6 +1,7 @@
 {
   "characters": [
     {
+      "id": 1,
       "isAlive": true,
       "message": "You're all to die!",
       "name": "Joffrey",
@@ -10,7 +11,8 @@
       "reignYears": 1
     },
     {
-      "isAlive": true,
+      "id": 2,
+      "isAlive": false,
       "message": "I hit first and ask later",
       "name": "Jamie",
       "family": "Lannister",
@@ -20,7 +22,8 @@
       "skillLevel": 10
     },
     {
-      "isAlive": true,
+      "id": 3,
+      "isAlive": false,
       "message": "I hit first and ask later",
       "name": "Daenerys",
       "family": "Targaryen",
@@ -30,7 +33,8 @@
       "skillLevel": 8
     },
     {
-      "isAlive": true,
+      "id": 4,
+      "isAlive": false,
       "message": "I dunno know why, but I believe I am gonna die soon",
       "name": "Tyrion",
       "family": "Lannister",
@@ -47,7 +51,8 @@
       }
     },
     {
-      "isAlive": true,
+      "id": 5,
+      "isAlive": false,
       "message": "I am a real loser",
       "name": "Bronn",
       "family": "Nieve",
