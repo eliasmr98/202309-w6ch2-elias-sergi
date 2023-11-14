@@ -1,6 +1,5 @@
-import { Category } from '../../models/character';
+import { Category, AnyCharacter } from '../../models/character';
 import '../../main.scss';
-import { AnyCharacter } from '../../models/character';
 import { useCharacters } from '../../hooks/useCharacters';
 
 type Props = {
