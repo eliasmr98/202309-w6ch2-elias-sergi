@@ -7,10 +7,6 @@ type Props = {
 };
 
 export function Card({ character }: Props) {
-  console.log('Category:', character.category);
-  console.log('ID:', character.id);
-  console.log('isAlive', character.isAlive);
-
   const { updateCharacter } = useCharacters();
 
   function handleDead(id: number) {
