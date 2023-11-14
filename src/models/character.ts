@@ -24,3 +24,4 @@ export interface Squire extends Character {
   serveLevel: number;
   servesTo: Fighter;
 }
+export type AnyCharacter = King | Fighter | Adviser | Squire;

@@ -1,5 +1,5 @@
-import './app.scss';
+import { List } from '../list/list';
 
 export function App() {
-  return <></>;
+  return <List></List>;
 }

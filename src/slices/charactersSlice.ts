@@ -1,8 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
-import { Character } from '../models/character';
+import { AnyCharacter } from '../models/character';
 
 type CharactersState = {
-  characters: Character[];
+  characters: AnyCharacter[];
 };
 
 const initialState: CharactersState = {
@@ -12,7 +12,10 @@ const charactersSlice = createSlice({
   name: 'characters',
   initialState,
   reducers: {
-    load: (state: CharactersState, { payload }: PayloadAction<Character[]>) => {
+    load: (
+      state: CharactersState,
+      { payload }: PayloadAction<AnyCharacter[]>
+    ) => {
       state.characters = payload;
       return state;
     },
