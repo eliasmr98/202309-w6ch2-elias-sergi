@@ -1,6 +1,5 @@
-import { Category } from '../../models/character';
+import { Category, AnyCharacter } from '../../models/character';
 import '../../main.scss';
-import { AnyCharacter } from '../../models/character';
 import { useCharacters } from '../../hooks/useCharacters';
 
 type Props = {
@@ -8,10 +7,6 @@ type Props = {
 };
 
 export function Card({ character }: Props) {
-  console.log('Category:', character.category);
-  console.log('ID:', character.id);
-  console.log('isAlive', character.isAlive);
-
   const { updateCharacter } = useCharacters();
 
   function handleDead(id: number) {
