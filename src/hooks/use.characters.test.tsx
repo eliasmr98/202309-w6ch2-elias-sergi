@@ -2,7 +2,7 @@ import { screen, render, act } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { useEffect } from 'react';
 import { ApiRepo } from '../services/api.repo';
-import { useCharacters } from '../hooks/useCharacters';
+import { useCharacters } from './use.characters';
 import { AnyCharacter } from '../models/character';
 import { userEvent } from '@testing-library/user-event';
 import { store } from '../store/store';

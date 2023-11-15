@@ -1,4 +1,4 @@
-export type Category = 'king' | 'fighter' | 'adviser' | 'squire' | 'dickson';
+export type Category = 'king' | 'fighter' | 'adviser' | 'squire';
 export interface Character {
   id: number;
   name: string;
