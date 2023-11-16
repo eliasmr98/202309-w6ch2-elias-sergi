@@ -1,6 +1,12 @@
-import { Category, AnyCharacter } from '../../models/character';
+import {
+  Category,
+  AnyCharacter,
+  Squire,
+  Adviser,
+  Fighter,
+} from '../../models/character';
 import '../../main.scss';
-import { useCharacters } from '../../hooks/useCharacters';
+import { useCharacters } from '../../hooks/use.characters';
 
 type Props = {
   character: AnyCharacter;
@@ -31,22 +37,23 @@ export function Card({ character }: Props) {
       return <li>Años de reinado: {item.reignYears}</li>;
     } else if ('weapon' in item) {
       return <li>Arma: {item.weapon}</li>;
-      // } else if ('skillLevel' in item) {
-      //   return <li>Destreza: {item.skillLevel}</li>
+    } else if ('skillLevel' in item) {
+      return <li>Destreza: {(item as unknown as Fighter).skillLevel}</li>;
     } else if ('adviseTo' in item) {
-      return <li>Sirve a: {item.adviseTo.name}</li>;
-      // } else if  ('servilityGrade' in item) {
-      //   return <li>Peloteo: {item.servilityGrade}</li>
+      return <li>Sirve a: {(item as Adviser).adviseTo.name}</li>;
+    } else if ('servilityGrade' in item) {
+      return <li>Peloteo: {(item as Squire).serveLevel}</li>;
     } else if ('servesTo' in item) {
-      return <li>Asesora a: {item.servesTo.name}</li>;
+      return <li>Asesora a: {(item as Squire).servesTo.name}</li>;
     }
+    return null;
   }
 
   return (
     <li className="character col">
       <div className="card character__card">
         <img
-          src={`${character.name.toLowerCase()}.jpg`}
+          src={`${character.name}.jpg`}
           alt={`${character.name} ${character.family}`}
           className={`character__picture ${
             !character.isAlive && 'card-img-top'
